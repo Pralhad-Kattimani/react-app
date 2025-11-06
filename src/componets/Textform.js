@@ -56,7 +56,7 @@ if (props.redmode === "dark") {
    return (
         <>
         <div className="container"style={{color: textColor}}>
-            <h1>{props.heading}</h1>
+            <h1 className="mb-3">{props.heading}</h1>
             <div className ="mb-3" >
                { /* <textarea className="form-control"  style={{backgroundColor: props.mode==='dark'?'grey':'white' ,color:props.mode==='dark'?'white':'black'}} id="mybox"  onChange={onchange} value={Text} rows="8"
                  ></textarea>*/}
@@ -65,10 +65,10 @@ if (props.redmode === "dark") {
               color: textColor}}/>
 
                   
-                <button className='btn btn-success mx-2 my-3' onClick={handalUpclick}>button to uppercase</button>
-                <button className='btn btn-success mx-2 my-3' onClick={handalLoclick}>button to lowercase</button>
-                <button className='btn btn-success mx-2 my-3' onClick={handalClearclick}>button to clear</button>
-                <button className='btn btn-success mx-2 my-3' onClick={handalCopyclick}>button to copy</button>
+                <button disabled={Text.length===0} className='btn btn-success mx-2 my-3' onClick={handalUpclick}>button to uppercase</button>
+                <button disabled={Text.length===0} className='btn btn-success mx-2 my-3' onClick={handalLoclick}>button to lowercase</button>
+                <button disabled={Text.length===0} className='btn btn-success mx-2 my-3' onClick={handalClearclick}>button to clear</button>
+                <button disabled={Text.length===0} className='btn btn-success mx-2 my-3' onClick={handalCopyclick}>button to copy</button>
                  </div> 
 
 
@@ -76,7 +76,7 @@ if (props.redmode === "dark") {
         </div>
         <div className="container my-5" style={{color: textColor}}>
             <h1> this is the summary</h1>
-            <p> {Text.split(" ").filter((word) => word.length !== 0).length}word {Text.length} characters</p>
+            <p> {Text.split(/\s+/).filter((word) => word.length !== 0).length}word {Text.length} characters</p>
             <p>{0.008 * Text.split("").length} minutes read</p>
             <p>priview</p>
             <p>{Text}</p>

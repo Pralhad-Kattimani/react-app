@@ -1,17 +1,18 @@
 
 import { useState } from 'react';
 import './App.css';
-//import About from './componets/About';
+import About from './componets/About';
 import Navbar from './componets/Navbar';
 import Alert from './componets/Alert';
+import Counter from './componets/Counter';
 
  
 import Textform from './componets/Textform';
-//import {
- // BrowserRouter as Router,
- // Routes,
- // Route,
-//} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 function App (){
   //assignment code 
  /* const[redmode, redsetmode]=useState('light');
@@ -46,12 +47,22 @@ function App (){
  
   
 }
- const toggelemode = () =>{
+const removebodyclasses=()=>{
+  document.body.classList.remove('bg-light')
+  document.body.classList.remove('bg-dark')
+  document.body.classList.remove('bg-success')
+  document.body.classList.remove('bg-danger')
+  document.body.classList.remove('bg-warning')
+
+}
+ const toggelemode = (cls) =>{
+  removebodyclasses();
+document.body.classList.add('bg-'+cls)
    if(mode ==='light'){
     setmode('dark');
     document.body.style.backgroundColor ='#042743'
     showalert("dark mode sucessful login","success")
-       document.title =("TextUtils -Dark mode");
+     //  document.title =("TextUtils -Dark mode");
        // for interval which is showing pop msg non website
      /*  setInterval(() => {
          document.title =("textutlis is amzing ");
@@ -63,28 +74,29 @@ function App (){
     setmode('light');
     document.body.style.backgroundColor ='white'
     showalert("light mode is login","success");
-   document.title =("TextUtils -light mode");
+   //document.title =("TextUtils -light mode");
 
 
    }
   }
   return (
     <>
-{/*<Router>*/}
+<Router>
 <Navbar title="textutiles" mode={mode}  toggelemode={toggelemode} boutText="contact"/>
  <Alert alert={alert}/>
  
 <div className='container my-3'>
 {  /*using exact bacuse some time react will choose same name file thats why*/}
-{/*<Routes>
-          <Route exact path="/about" element={<About/>}>
-          </Route>*/}
-         {/* <Route  exact path="/" element={}>*/}
-          <Textform showalert={showalert} heading="enter the text here" mode={mode}/>
-          {/*</Route>
-        </Routes>*/}
+<Routes>
+          <Route exact path="/about" element={<About mode={mode}/>}>
+          </Route>
+          <Route  exact path="/" element={ <Textform showalert={showalert} heading="try textUtils Word Counter ,Character counter ,copy text" mode={mode}/>}>
+          </Route>
+                  <Route exact path="/Counter" element={<Counter/>}>
+          </Route>
+        </Routes>
 </div>
-{/*</Router>*/}
+</Router>
 
 
     </>
